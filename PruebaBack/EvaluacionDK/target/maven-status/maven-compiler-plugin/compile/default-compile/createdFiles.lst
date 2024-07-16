@@ -1,0 +1,8 @@
+ec\edu\ups\ppw64\demo64\dao\UniversidadDAO.class
+ec\edu\ups\ppw64\demo64\business\GestionUniversidad.class
+ec\edu\ups\ppw64\demo64\business\GestionDatos.class
+ec\edu\ups\ppw64\demo64\services\ErrorMessage.class
+ec\edu\ups\ppw64\demo64\services\PathBase.class
+ec\edu\ups\ppw64\demo64\services\CORSFilter.class
+ec\edu\ups\ppw64\demo64\services\UniversidadServices.class
+ec\edu\ups\ppw64\demo64\model\Universidad.class

@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: productosdb
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
+    networks:
+      - datalogger_net
+
+  srvwildfly:
+    image: fandresga/pruebadk
+    container_name: srvwildfly
+    hostname: srvwildfly
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=productosdb
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_TYPE=const
+      - JAEGER_SAMPLER_PARAM=1
+    ports:
+      - 8080:8080
+      - 9990:9990
+    depends_on:
+      - postgres
+    networks:
+      - datalogger_net
+
+  admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ups123@ups.com.ec
+      PGADMIN_DEFAULT_PASSWORD: ups123
+    ports:
+      - 5050:80
+    depends_on:
+      - postgres
+    networks:
+      - datalogger_net
+      
+networks:
+  datalogger_net:
